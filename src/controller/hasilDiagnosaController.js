@@ -2,13 +2,13 @@ const HasilDiagnosa = require("../models/hasilDiagnosaModel");
 
 exports.createHasilDiagnosa = async (req, res) => {
 	try {
-		const { tanggal, nama_pelanggan, kerusakan_nama1, kerusakan_nama2, kerusakan_nama3 } = req.body;
+		const { tanggal, nama_pelanggan, kerusakan_1, kerusakan_2, kerusakan_3 } = req.body;
 		await HasilDiagnosa.createHasilDiagnosa({
 			tanggal,
 			nama_pelanggan,
-			kerusakan_nama1,
-			kerusakan_nama2,
-			kerusakan_nama3,
+			kerusakan_1,
+			kerusakan_2,
+			kerusakan_3,
 		});
 		res.status(201).json({ message: "Hasil diagnosa created successfully" });
 	} catch (error) {
@@ -67,6 +67,20 @@ exports.getAllHasilDiagnosa = async (req, res) => {
 	} catch (error) {
 		res.status(500).json({ error: error.message });
 	}
+};
+
+exports.getAllDetailDiagnosa = async (req, res) => {
+    try {
+        const hasilDiagnosa = await HasilDiagnosa.getAllDetailDiagnosa();
+        if (!Array.isArray(hasilDiagnosa)) {
+            console.error('Expected an array from HasilDiagnosa.getAllDetailDiagnosa, got:', hasilDiagnosa);
+            return res.status(500).json({ error: 'Unexpected server error' });
+        }
+        res.status(200).json(hasilDiagnosa[0]);
+    } catch (error) {
+        console.error('Error in getAllDetailDiagnosa:', error);
+        res.status(500).json({ error: error.message });
+    }
 };
 
 exports.searchHasilDiagnosa = async (req, res) => {

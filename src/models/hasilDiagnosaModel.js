@@ -31,23 +31,31 @@ class HasilDiagnosa {
 			return result;
 		} catch (error) {
 			console.error("Error in createDetailHasilDiagnosa: ", error);
-			throw error; // Rethrow the error to be caught by the calling function
+			throw error;
 		}
 	}
+	
 	static async deleteHasilDiagnosa(nama_pelanggan) {
 		const result = await db.query("DELETE FROM hasil_diagnosa WHERE nama_pelanggan = ?", [nama_pelanggan]);
 		return result;
 	}
 
 	static async getAllHasilDiagnosa() {
+
 		const result = await db.query("SELECT * FROM hasil_diagnosa");
+		return result;
+	}
+
+	static async getAllDetailDiagnosa() {
+		
+		const result = await db.query("SELECT * FROM detail_diagnosa");
 		return result;
 	}
 
 	static async searchHasilDiagnosa(query) {
 		const searchQuery = `%${query}%`;
 		const result = await db.query("SELECT * FROM hasil_diagnosa WHERE nama_pelanggan LIKE ?", [searchQuery]);
-		return result; // Jangan gunakan array destructuring di sini
+		return result;
 	}
 }
 
