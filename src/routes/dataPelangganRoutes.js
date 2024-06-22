@@ -10,5 +10,4 @@ router.post('/pelanggan', dataPelangganController.createDataPelanggan);
 router.patch('/pelanggan/:id_pelanggan', dataPelangganController.updateDataPelanggan);
 router.delete('/pelanggan/:nama_pelanggan', dataPelangganController.deleteDataPelanggan);
 
-
 module.exports = router;
