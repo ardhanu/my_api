@@ -2,9 +2,6 @@
   "name": "sistem-pakar",
   "version": "1.0.0",
   "main": "index.js",
-  "engines": {
-    "node": "20.x"
-  },
   "author": "Sakti Ardhanu",
   "license": "MIT",
   "scripts": {
